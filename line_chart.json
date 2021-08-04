@@ -1,0 +1,102 @@
+{
+    "type": "APL",
+    "version": "1.1",
+    "settings": {},
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        },
+        {
+            "name": "alexa-visuals-line",
+            "version": "1.0.0",
+            "source": "https://bplskillimages.s3.amazonaws.com/linechart-0.1.1.json"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Margins and padding",
+            "dimensions": {
+                "marginTop": 10,
+                "marginLeft": 10,
+                "marginRight": 30,
+                "marginBottom": 50,
+                "paddingTop": "2vh",
+                "alexaHeaderHeight": "10vh"
+            }
+        },
+        {
+            "description": "Margins and padding",
+            "when": "${viewport.shape == 'round'}",
+            "dimensions": {
+                "marginTop": 0,
+                "marginBottom": 150,
+                "marginRight": 100
+            }
+        }
+    ],
+    "styles": {},
+    "onMount": [],
+    "graphics": {},
+    "commands": {},
+    "layouts": {
+        "LineChartTemplate": {
+            "parameters": [
+                "backgroundImage",
+                "title",
+                "visualObjectData"
+            ],
+            "item": [
+                {
+                    "type": "Container",
+                    "width": "100vw",
+                    "height": "100vh",
+                    "direction": "column",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "source": "${backgroundImage}",
+                            "scale": "best-fill",
+                            "width": "100vw",
+                            "height": "100vh",
+                            "position": "absolute"
+                        },
+                        {
+                            "type": "AlexaHeader",
+                            "headerTitle": "${String.toUpperCase(title)}"
+                        },
+                        {
+                            "type": "Container",
+                            "paddingLeft": "@marginLeft",
+                            "paddingTop": "@marginTop",
+                            "paddingBottom": "@marginBottom",
+                            "paddingRight": "@marginRight",
+                            "items": [
+                                {
+                                    "type": "avoLineChartLayout",
+                                    "width": "${100vw - @marginLeft - @marginRight}",
+                                    "height": "${100vh - @alexaHeaderHeight - @marginTop - @marginBottom}",
+                                    "visualObjectData": "${visualObjectData}"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": [
+            {
+                "type": "LineChartTemplate",
+                "backgroundImage": "${payload.metadata.backgroundImage}",
+                "title": "${payload.metadata.title}",
+                "visualObjectData": "${payload.visualObjectData}"
+            }
+        ]
+    }
+}
