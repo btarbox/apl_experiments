@@ -45,6 +45,11 @@ datasources2 = {
                 "primaryAction": [{"type": "SendEvent","arguments": ["teams"]}]
             },
             {
+                "primaryText": "Points By Week",
+                "imageSource": "https://duy7y3nglgmh.cloudfront.net/linechart.png",
+                "primaryAction": [{"type": "SendEvent","arguments": ["line"]}]
+            },
+            {
                 "primaryText": "Relegation",
                 "imageSource": "https://duy7y3nglgmh.cloudfront.net/relegation.png",
                 "primaryAction": [{"type": "SendEvent","arguments": ["relegation"]}]
@@ -90,9 +95,8 @@ datasources2 = {
                 "primaryAction": [{"type": "SendEvent","arguments": ["referee"]}]
             },
         ],
-        "logoUrl": "https://duy7y3nglgmh.cloudfront.net/redcard.png"
-    }
-}
+    }                        
+} 
 
 test_speach_data =  {
     "referee" : "The most used referees are Martin Atkinson with 22 yellow cards and 4 red cards, \
@@ -113,20 +117,23 @@ teamsdatasource = {
         "radioButtonGroupItems": [
             {
                 "radioButtonId": "Form",
-                "radioButtonText": "Show team's Form",
-                "radioButtonHeight": "5px",
-                "radioButtonChecked": "True"
+                "radioButtonText": "ShowTeamForm",
+                "radioButtonHeight": "15px",
+                "radioButtonChecked": "True",
+                "disabled": "True"
             },
             {
                 "radioButtonId": "Results",
-                "radioButtonText": "Show team's Results",
-                "radioButtonHeight": "5px",
-                "radioButtonChecked": "False"
+                "radioButtonText": "ShowTeamResults",
+                "radioButtonHeight": "15px",
+                "radioButtonChecked": "False",
+                "disabled": "True"
             },
             {
                 "radioButtonId": "Fixtures",
-                "radioButtonText": "Show team's Fixtures",
-                "radioButtonHeight": "5px",
+                "radioButtonText": "ShowTeamFixtures",
+                "radioButtonHeight": "15px",
+                "disabled": "True",
                 "radioButtonChecked": "False"
             }
         ]
@@ -167,7 +174,7 @@ teamsdatasource = {
                     {
                         "type": "SendEvent",
                         "arguments": ["astonvilla"]
-
+                        
                     }
                 ]
             },
@@ -263,5 +270,5 @@ teamsdatasource = {
             },
         ],
         "logoUrl": "https://duy7y3nglgmh.cloudfront.net/redcard.png"
-    }
+    }                        
 }
