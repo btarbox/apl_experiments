@@ -20,15 +20,18 @@ import json
 from random import randrange
 from shared import datasources2, test_speach_data, noise_data, teamsdatasource
 from linechartdata import linedata
-
 from ask_sdk_core.api_client import DefaultApiClient
+import boto3
 
+s3 = boto3.client("s3")
 sb = SkillBuilder()
 radioButtonText = "default"
+bucket = "bpltables"
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 TOKEN = "buttontoken"
+TICK_WIDTH = 3.0
 
 ''' 
 create an emit the actual speach plus background sound.
@@ -105,14 +108,32 @@ class LaunchRequestHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         logger.info("*****  at handle launch request   *******")
         teams_and_attrs = [["Arsenal", "rgba(255,0,0,1)"], ["Liverpool", "rgba(128,128,0,1)"]]
-        for team in teams_and_attrs:
-            logger.info(f"Team:{team[0]}, color:{team[1]}, points:{randomize_points(10)}")
+        #for team in teams_and_attrs:
+        #    logger.info(f"Team:{team[0]}, color:{team[1]}, points:{randomize_points(10)}")
+
+        # bucket = "bpltables"
+        # logger.info('try to open file ' + bucket + ":" + "line_data")
 
 
-        logger.info(linedata)
-        logger.info(linedata['visualObjectData'])
+        # resp = s3.get_object(Bucket=bucket, Key="line_data")
+        # body_str = string_data = resp['Body'].read().decode("utf-8")
+        # logger.info("converted streaming_body to string")
+        # n = body_str.split("\n")
+        # lines_in_file = len(n)
+        # logger.info(f"there are {len(n)} items in the list")
+        # form_data = {}
+        # for line in n:
+        #     this_line = line.split(',')
+        #     form_data[this_line[0]] = this_line[1:]
+        # this_team = form_data['chelsea']
+        # for points in this_team:
+        #     logger.info(f"this weeks points are {points}")
 
-        logger.info(str(get_viewport_profile(handler_input.request_envelope)))
+
+        #logger.info(linedata)
+        #logger.info(linedata['visualObjectData'])
+
+        #logger.info(str(get_viewport_profile(handler_input.request_envelope)))
         speech_text = "Welcome to the Alexa APLA demo"
 
         image_url = "https://duy7y3nglgmh.cloudfront.net/Depositphotos_referee.jpg"
@@ -406,6 +427,7 @@ class RemoveTeamIntentHandler(AbstractRequestHandler):
         logger.info("Remove handler")
         return(add_or_delete_team(handler_input, "remove"))
 
+
 '''
 The voice model has one slot but that slot is marked as can accept multiple values.
 So, the slot value might be in one part of the handler_input or a different part
@@ -421,7 +443,7 @@ def add_or_delete_team(handler_input, mode):
             session_attr[team] = True
             logger.info(f"added team {team} to the session")
         else:
-            session_attr.pop(team, "not found")
+            session_attr.pop(team, "not found ")
             logger.info(f"removed team {team} to the session")
         handler_input.attributes_manager.session_attributes = session_attr
         return(load_and_output_graph(handler_input, linedata))
@@ -435,7 +457,7 @@ def add_or_delete_team(handler_input, mode):
                 session_attr[team] = True
                 logger.info(f"added team {team} to the session")
             else:
-                session_attr.pop(team, "not found")
+                session_attr.pop(team, "not found 2")
                 logger.info(f"removed team {team} to the session")
         handler_input.attributes_manager.session_attributes = session_attr
         return(load_and_output_graph(handler_input, linedata))
@@ -451,6 +473,17 @@ class LineChartIntentHandler(AbstractRequestHandler):
         else:
             return (handler_input.response_builder.speak("No screen available, say get table or say a team name").set_should_end_session(False).response)      
 
+class LineChartWithTeamIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("LineChartWithTeamsIntent")(handler_input)
+
+    def handle(self, handler_input):
+        if get_supported_interfaces(handler_input).alexa_presentation_apl is not None:
+            add_or_delete_team(handler_input, "add")
+            return(load_and_output_graph(handler_input, linedata))
+        else:
+            return (handler_input.response_builder.speak("No screen available, say get table or say a team name").set_should_end_session(False).response)      
+
 
 ''' zero points for a loss, 1 point for a draw and 3 points for a win '''
 def randomize_points(num_points):
@@ -460,60 +493,63 @@ def randomize_points(num_points):
         points.append( points[x-1] + possible_points[randrange(3) ])
     return(points)
     
+def get_team_points_and_color():
+    resp = s3.get_object(Bucket=bucket, Key="line_data")
+    body_str = string_data = resp['Body'].read().decode("utf-8")
+    logger.info("converted streaming_body to string")
+    n = body_str.split("\n")
+    n.pop()
+    lines_in_file = len(n)
+    logger.info(f"there are {len(n)} items in the list")
+    form_data = {}
+    for line in n:
+        this_line = line.split(',')
+        form_data[this_line[0]] = this_line[1:]
+    return form_data
+    #this_team = form_data['chelsea']
+    #for points in this_team:
+    #    logger.info(f"this weeks points are {points}")
+
+def random_color():
+    #"rgba(239,1,7,1)"
+    return f"rgba({randrange(255)},{randrange(255)},{randrange(255)},1)"
     
 '''
 This routine would hold the business logic to provide the actual data for the graph
 '''
 def load_and_output_graph(handler_input, linedata):
-    create_ticks(10, linedata)
+    NUM_POINTS = 20
+    MAX_POINTS = 40
+    create_ticks(NUM_POINTS, linedata)
     create_verticle_ticks(4, linedata)
     session_attr = handler_input.attributes_manager.session_attributes
     linedata['visualObjectData']['lineChartData']['paths'] = []
+    form_data = get_team_points_and_color()
     
-    teams_and_attrs = [["Arsenal", "rgba(255,0,0,1)"], 
-                       ["Liverpool", "rgba(128,128,0,1)"],
-                       ["Leicester City", "rgba(0,255,0,1)"],
-                       ["Chelsea", "rgba(255,255,0,1)"],
-                       ["Manchester City", "rgba(192,192,192,1)"],
-                       ["Manchester United", "rgba(0,255,255,1)"],
-                       ]
-    for team in teams_and_attrs:
-        logger.info(f"Team:{team[0]}, color:{team[1]}, points:{randomize_points(10)}")
-        name = session_attr.get(team[0], None)
+    # teams_and_attrs = [["Arsenal",           "rgba(239,1,7,1)"], 
+    #                   ["Liverpool",         "rgba(208,0,39,1)"],
+    #                   ["Leicester City",    "rgba(253,190,17,1)"],
+    #                   ["Chelsea",           "rgba(3,70,148,1)"],
+    #                   ["Manchester City",   "rgba(108,173,223,1)"],
+    #                   ["Manchester United", "rgba(255,229,0,1)"],
+    #                   ["Brentford",         "rgba(128,255,255,1)"],
+    #                   ["Everton",           "rgba(39,68,136,1)"],
+    #                   ]
+    logger.info("about to search for active teams in " + str(form_data))
+    for team, points in form_data.items():
+    #for team in form_data:
+        logger.info(f"Team:{team}, points:{points}")
+        name = session_attr.get(team, None)
         if name is not None:
-            load_points(linedata, randomize_points(10), team[0], team[1], 30)
+            logger.info(f"Team {team} is active, get its points and graph it")
+            this_team = form_data.get(team, "not found")
+            logger.info("this team:" + str(this_team))
+            logger.info("team " + str(team) + " " + str(points))
+            logger.info("formdata " + str(form_data))
+            load_points(linedata,  points,                               team,   random_color(), MAX_POINTS)
+            #load_points(linedata, randomize_points(min(38,NUM_POINTS)), team[0], team[1],              MAX_POINTS)
             
-    # arsenal = session_attr.get("Arsenal", None)
-    # if arsenal is not None:
-    #     team_points = [0,3,4,4,7,7,8,9,10,11]
-    #     load_points(linedata,team_points, "Arsenal", "rgba(255,0,0,1)", 30) # red
-
-    # liverpool = session_attr.get("Liverpool", None)
-    # if liverpool is not None:
-    #     team_points = [0,3,6,7,10,11,14,17,18,18]
-    #     load_points(linedata,team_points, "Liverpool", "rgba(128,128,0,1)", 30) # olive
-
-    # leicester = session_attr.get("Leicester City", None)
-    # if leicester is not None:
-    #     team_points = [0,1,2,5,8,9,12,15,17,20]
-    #     load_points(linedata,team_points, "Leicester City", "rgba(0,255,0,1)", 30) # lime
-    
-    # chelsea = session_attr.get("Chelsea", None)
-    # if chelsea is not None:
-    #     team_points = [0,0,1,4,5,5,6,9,10,11]
-    #     load_points(linedata,team_points, "Chelsea", "rgba(255,255,0,1)", 30) # yellow
-    
-    # mancity = session_attr.get("Manchester City", None)
-    # if mancity is not None:
-    #     team_points = [0,3,6,9,12,15,18,19,22,22]
-    #     load_points(linedata,team_points, "Manchester City", "rgba(192,192,192,1)", 30) # silver
-
-    # manunited = session_attr.get("Manchester United", None)
-    # if manunited is not None:
-    #     team_points = [0,3,3,4,7,10,10,11,12,15]
-    #     load_points(linedata,team_points, "Manchester United", "rgba(0,255,255,1)", 30) # blue
-        
-    say = "Say add team name or remove team name to change graph"    
+    say = "Say add or remove"    
     return (
         handler_input.response_builder
             .speak(say)
@@ -532,13 +568,15 @@ def load_and_output_graph(handler_input, linedata):
         )
     
     
-
-''' verticle range is 1 to 0, so divide that by max_points to get verticle per point, then 1 - that value'''
+''' verticle range is 1 to 0 with 0 at the top, so divide that by max_points to get verticle per point, then 1 - that value'''
 def load_points(linedata, team_points, team_name, color, max_points):
     y_per_point = 1.0 / max_points
+    X_POS = 2.0 / len(team_points)
+    logger.info("in load_points, team_points is: " + str(team_points))
     points = []
-    for index in range(len((team_points))):
-        points.append({'x': 0.2 * index, 'y': 1.0 - (team_points[index] * y_per_point)}) 
+    for index in range(len(team_points)):
+        logger.info(f"at {index}: {team_points[index]}")
+        points.append({'x': X_POS * index, 'y': 1.0 - (int(team_points[index]) * y_per_point)}) 
     
     logger.info(f"points {points}")
     team_path = {"label": team_name, "points": points, "pathColor": color}
@@ -546,11 +584,12 @@ def load_points(linedata, team_points, team_name, color, max_points):
 
     
 def create_ticks(num_ticks, linedata):
-    logger.info(linedata)
+    logger.info("creating ticks by two")
+    TICK_SPACE = 1 / num_ticks
     ticks = []
-    for index in range(num_ticks):
-        comp_inner = {"type" : "Text", "textValue" : str(index), "width": 3.0}
-        comp = {"component": comp_inner, "space": 0.1 * index}
+    for index in range(0,num_ticks,2):
+        comp_inner = {"type" : "Text", "textValue" : str(index), "width": TICK_WIDTH}
+        comp = {"component": comp_inner, "space": TICK_SPACE * index}
         ticks.append(comp)
     linedata['visualObjectData']['lineChartData']['primaryTickList']['ticks'] = ticks    
 
@@ -559,7 +598,7 @@ def create_verticle_ticks(num_ticks, linedata):
     logger.info(linedata)
     ticks = []
     for index in range(num_ticks):
-        comp_inner = {"type" : "Text", "textValue" : str(index*10), "width": 3.0}
+        comp_inner = {"type" : "Text", "textValue" : str(index*10), "width": TICK_WIDTH}
         comp = {"component": comp_inner, "space": index*0.25}
         ticks.append(comp)
     linedata['visualObjectData']['lineChartData']['defaultValueTickList']['ticks'] = ticks    
@@ -672,6 +711,7 @@ sb.add_request_handler(GridMixIntentHandler())
 sb.add_request_handler(ButtonEventHandler())
 sb.add_request_handler(AudioMixWithDataSourceIntentHandler())
 sb.add_request_handler(LineChartIntentHandler())
+sb.add_request_handler(LineChartWithTeamIntentHandler())
 sb.add_request_handler(AddTeamIntentHandler())
 sb.add_request_handler(RemoveTeamIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
