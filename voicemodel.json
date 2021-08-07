@@ -1,0 +1,377 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "tarbox kaylee",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SimpleTextIntent",
+                    "slots": [],
+                    "samples": [
+                        "simple text"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "TextWithEmotionIntent",
+                    "slots": [],
+                    "samples": [
+                        "text with emotion"
+                    ]
+                },
+                {
+                    "name": "SimpleCardIntent",
+                    "slots": [],
+                    "samples": [
+                        "this is a simple card"
+                    ]
+                },
+                {
+                    "name": "StandardCardIntent",
+                    "slots": [],
+                    "samples": [
+                        "this is a standard card"
+                    ]
+                },
+                {
+                    "name": "AudioMixIntent",
+                    "slots": [],
+                    "samples": [
+                        "this is an audio mix"
+                    ]
+                },
+                {
+                    "name": "AudioMixWithDataSourceIntent",
+                    "slots": [],
+                    "samples": [
+                        "this is an audio mix with data sources"
+                    ]
+                },
+                {
+                    "name": "GridMixIntent",
+                    "slots": [],
+                    "samples": [
+                        "premier league",
+                        "grid list",
+                        "show grid list"
+                    ]
+                },
+                {
+                    "name": "LineChartIntent",
+                    "slots": [],
+                    "samples": [
+                        "line graph",
+                        "line chart"
+                    ]
+                },
+                {
+                    "name": "AddTeamIntent",
+                    "slots": [
+                        {
+                            "name": "plteam",
+                            "type": "plteam",
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "add {plteam} to chart",
+                        "add {plteam} to the chart",
+                        "add {plteam} to the graph",
+                        "add {plteam} to graph",
+                        "add {plteam}"
+                    ]
+                },
+                {
+                    "name": "RemoveTeamIntent",
+                    "slots": [
+                        {
+                            "name": "plteam",
+                            "type": "plteam",
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "remove {plteam}"
+                    ]
+                },
+                {
+                    "name": "LineChartWithTeamsIntent",
+                    "slots": [
+                        {
+                            "name": "plteam",
+                            "type": "plteam",
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "lilne chart about {plteam}",
+                        "line chart with {plteam}",
+                        "line chart for {plteam}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "plteam",
+                    "values": [
+                        {
+                            "id": "Brentford",
+                            "name": {
+                                "value": "Brentford",
+                                "synonyms": [
+                                    "The Bees"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "Watford",
+                            "name": {
+                                "value": "Watford",
+                                "synonyms": [
+                                    "The Hornets"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "NorwichCity",
+                            "name": {
+                                "value": "Norwich City",
+                                "synonyms": [
+                                    "Canaries"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "ManchesterUnited",
+                            "name": {
+                                "value": "Manchester United",
+                                "synonyms": [
+                                    "man you"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "ManchesterCity",
+                            "name": {
+                                "value": "Manchester City",
+                                "synonyms": [
+                                    "citizens"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "AstonVilla",
+                            "name": {
+                                "value": "Aston Villa",
+                                "synonyms": [
+                                    "lions",
+                                    "the villa",
+                                    "villans"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "Burnley",
+                            "name": {
+                                "value": "Burnley",
+                                "synonyms": [
+                                    "the clarets",
+                                    "clarets"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "Everton",
+                            "name": {
+                                "value": "Everton",
+                                "synonyms": [
+                                    "the toffees",
+                                    "toffees"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "Fulham",
+                            "name": {
+                                "value": "Fulham",
+                                "synonyms": [
+                                    "cottagers",
+                                    "the cottagers"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "Liverpool",
+                            "name": {
+                                "value": "Liverpool",
+                                "synonyms": [
+                                    "reds",
+                                    "the reds",
+                                    "Red Devils"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "WestBromwichAlbion",
+                            "name": {
+                                "value": "West Bromwich Albion",
+                                "synonyms": [
+                                    "The baggies",
+                                    "baggies",
+                                    "west brom"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "Southampton",
+                            "name": {
+                                "value": "Southampton",
+                                "synonyms": [
+                                    "the saints",
+                                    "saints"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "SheffieldUnited",
+                            "name": {
+                                "value": "Sheffield United",
+                                "synonyms": [
+                                    "blades",
+                                    "The blades"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "BrightonAndHoveAlbion",
+                            "name": {
+                                "value": "Brighton and Hove Albion",
+                                "synonyms": [
+                                    "Brighton"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "NewcastleUnited",
+                            "name": {
+                                "value": "Newcastle United",
+                                "synonyms": [
+                                    "magpies",
+                                    "newcastle"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "TottenhamHotspur",
+                            "name": {
+                                "value": "Tottenham Hotspur",
+                                "synonyms": [
+                                    "spurs",
+                                    "hotspurs",
+                                    "tottenham",
+                                    "tottenham hotspurs"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "WestHamUnited",
+                            "name": {
+                                "value": "West Ham United",
+                                "synonyms": [
+                                    "West Ham",
+                                    "Hammers",
+                                    "the hammers"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "LeicesterCity",
+                            "name": {
+                                "value": "Leicester City",
+                                "synonyms": [
+                                    "foxes",
+                                    "Leicester",
+                                    "the foxes"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "Chelsea",
+                            "name": {
+                                "value": "Chelsea",
+                                "synonyms": [
+                                    "blues",
+                                    "the blues"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "LeedsUnited",
+                            "name": {
+                                "value": "Leeds United",
+                                "synonyms": [
+                                    "The peacocks",
+                                    "peacocks"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "WolverhamptonWanderers",
+                            "name": {
+                                "value": "Wolverhampton Wanderers",
+                                "synonyms": [
+                                    "Wolverhampton",
+                                    "Wanderers",
+                                    "the Wanderers",
+                                    "wolves"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "CrystalPalace",
+                            "name": {
+                                "value": "Crystal Palace",
+                                "synonyms": [
+                                    "palace"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "Arsenal",
+                            "name": {
+                                "value": "Arsenal",
+                                "synonyms": [
+                                    "gunners"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
