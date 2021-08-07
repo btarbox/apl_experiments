@@ -1,0 +1,1835 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "settings": {},
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-viewport-profiles",
+            "version": "1.1.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Colors for the light theme",
+            "colors": {
+                "avoColorTextPrimaryLightTheme": "#151920ff",
+                "avoColorTextSecondaryLightTheme": "#151920bb",
+                "avoColorHoverTextDefault": "#ffffffcc"
+            }
+        },
+        {
+            "description": "Colors for the dark theme",
+            "colors": {
+                "avoColorTextPrimaryDarkTheme": "#f0f1efff",
+                "avoColorTextSecondaryDarkTheme": "#f0f1efbb"
+            }
+        },
+        {
+            "description": "[AVO] Knight Resources (default)",
+            "dimensions": {
+                "avoUnitSize": "12dp",
+                "avoCalloutFontSize": "84dp",
+                "avoCalloutSpace": "128dp",
+                "avoTickFontSize": "24dp",
+                "avoLegendPadding": "32dp",
+                "avoLegendFontSize": "24dp",
+                "avoLegendRadius": "8dp",
+                "avoHighlightDotRadius": "7dp",
+                "avoConstantLineLabelFontSize": "24dp",
+                "avoLineWidth": "3dp"
+            },
+            "numbers": {
+                "avoHoverPrimaryFontSize": 32,
+                "avoHoverSecondaryFontSize": 24,
+                "avoDefaultHoverTextMaxWidth": 8,
+                "avoHoverVerticalMiddleAlignmentOffset": 0.3,
+                "avoPrimaryLegendSkip": 1
+            }
+        },
+        {
+            "description": "[AVO] Checkers Resources",
+            "when": "${@viewportProfile == @hubLandscapeSmall}",
+            "dimensions": {
+                "avoCalloutFontSize": "80dp",
+                "avoCalloutSpace": "120dp",
+                "avoTickFontSize": "18dp",
+                "avoHighlightDotRadius": "6dp"
+            }
+        },
+        {
+            "description": "[AVO] Rook Resources",
+            "when": "${@viewportProfile == @hubRoundSmall}",
+            "dimensions": {
+                "avoCalloutFontSize": "18dp",
+                "avoCalloutSpace": "0dp",
+                "avoLegendFontSize": "15dp",
+                "avoHighlightDotRadius": "6dp"
+            },
+            "numbers": {
+                "avoPrimaryLegendSkip": 2
+            }
+        },
+        {
+            "description": "[AVO] Bishop Resources",
+            "when": "${@viewportProfile == @hubLandscapeLarge}",
+            "dimensions": {
+                "avoUnitSize": "16dp",
+                "avoCalloutFontSize": "128dp",
+                "avoCalloutSpace": "192dp",
+                "avoHighlightDotRadius": "8dp",
+                "avoLineWidth": "4dp"
+            }
+        },
+        {
+            "description": "[AVO] Stark Resources",
+            "when": "${@viewportProfile == @tvLandscapeXLarge}",
+            "dimensions": {
+                "avoUnitSize": "8dp",
+                "avoCalloutFontSize": "62dp",
+                "avoCalloutSpace": "104dp",
+                "avoTickFontSize": "12dp",
+                "avoConstantLineLabelFontSize": "12dp",
+                "avoHighlightDotRadius": "4dp",
+                "avoLineWidth": "2dp"
+            },
+            "numbers": {
+                "avoHoverPrimaryFontSize": 16,
+                "avoHoverSecondaryFontSize": 12
+            }
+        },
+        {
+            "description": "[AVO] Common Resources",
+            "dimensions": {
+                "avoLegendHeight": "${@avoLegendFontSize * 2}",
+                "avoTickPadding": "@avoUnitSize",
+                "avoPrimaryTickLength": "${@avoUnitSize / 2}",
+                "avoPrimaryTicksHeight": "${@avoPrimaryTickLength + @avoTickPadding + @avoTickFontSize * 1.1}",
+                "avoValueTickHeight": "${@avoTickFontSize * 1.3}",
+                "avoHoverOffset": "${@avoUnitSize * 1.5}",
+                "avoHighlightDotOffset": "${(@avoHighlightDotRadius * 2) + 2}"
+            },
+            "numbers": {
+                "avoLineAnimationTime": 1667,
+                "avoLegendsAnimationTime": 500,
+                "avoValueAxisAnimationTime": 1000,
+                "avoValueAxisStaggerDelay": 67,
+                "avoPrimaryAxisAnimationTime": 1667,
+                "avoConstantLineAnimationDelay": 1200,
+                "avoConstantLineAnimationTime": 667,
+                "avoHoverTextXThreshold": 1.6,
+                "avoFrontLineStrokeOpacity": 1,
+                "avoFrontLineGradientFillOpacity": 0.0,
+                "avoBottomLineStrokeOpacity": 0.6,
+                "avoBottomLineGradientFillOpacity": 0.0,
+                "avoTickTextOpacity": 0.8,
+                "avoConstantLineLabelFontWeight": 400,
+                "avoHoverFontWeight": 500,
+                "avoHoverBoldFontWeight": 700,
+                "avoPrimaryTickDefaultWidth": 4,
+                "avoCalloutFontWeight": 700,
+                "avoTickFontWeight": 100
+            },
+            "colors": {
+                "avoTickTextColor": "#ffffffaa",
+                "avoConstantLineLabelTextColor": "#a9aeb4ff",
+                "avoDefaultLineColor": "#2ad4ffff",
+                "avoHighlightLineColor": "#ffffff33",
+                "avoColorTickItemDefault": "#ffffff22",
+                "avoZeroTickColor": "#fafafa35"
+            },
+            "easing": {
+                "avoLineAnimationCurve": "ease-out"
+            }
+        }
+    ],
+    "styles": {
+        "avoTextCalloutStyleLightTheme": {
+            "description": "Callout text style",
+            "values": [
+                {
+                    "fontWeight": "@avoCalloutFontWeight",
+                    "fontSize": "@avoCalloutFontSize",
+                    "color": "@avoColorTextPrimaryLightTheme"
+                }
+            ]
+        },
+        "avoTextCalloutStyleDarkTheme": {
+            "description": "Callout text style",
+            "values": [
+                {
+                    "fontWeight": "@avoCalloutFontWeight",
+                    "fontSize": "@avoCalloutFontSize",
+                    "color": "@avoColorTextPrimaryDarkTheme"
+                }
+            ]
+        },
+        "avoTextTickStyle": {
+            "description": "Tick text style",
+            "values": [
+                {
+                    "fontWeight": "@avoTickFontWeight",
+                    "fontSize": "@avoTickFontSize",
+                    "color": "@avoTickTextColor",
+                    "opacity": "@avoTickTextOpacity"
+                }
+            ]
+        },
+        "avoTextConstantLineLabelStyle": {
+            "description": "Constant line labels style",
+            "values": [
+                {
+                    "fontWeight": "@avoConstantLineLabelFontWeight",
+                    "fontSize": "@avoConstantLineLabelFontSize",
+                    "color": "@avoConstantLineLabelTextColor"
+                }
+            ]
+        },
+        "avoTextLegendStyleLightTheme": {
+            "description": "Default style for chart legend text in light theme",
+            "values": [
+                {
+                    "color": "@avoColorTextPrimaryLightTheme",
+                    "fontSize": "@avoLegendFontSize"
+                }
+            ]
+        },
+        "avoTextLegendStyleDarkTheme": {
+            "description": "Default style for chart legend text in light theme",
+            "values": [
+                {
+                    "color": "@avoColorTextPrimaryDarkTheme",
+                    "fontSize": "@avoLegendFontSize"
+                }
+            ]
+        }
+    },
+    "onMount": [],
+    "graphics": {
+        "avoHorizontalTickGraphic": {
+            "type": "AVG",
+            "version": "1.0",
+            "parameters": [
+                {
+                    "name": "vectorWidth",
+                    "description": "Total width to play with.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "vectorHeight",
+                    "description": "Total height to play with.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "lineVerticalOffset",
+                    "description": "Line draw vertical offset.",
+                    "type": "number",
+                    "default": "0"
+                },
+                {
+                    "name": "lineHeight",
+                    "description": "Height/width of the line",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "lineColor",
+                    "description": "Line color.",
+                    "type": "color",
+                    "default": "#ffffff22"
+                },
+                {
+                    "name": "strokeDashSize",
+                    "description": "Size of the strokes and gaps.",
+                    "default": "4"
+                }
+            ],
+            "height": "${vectorHeight}",
+            "width": "${vectorWidth}",
+            "items": [
+                {
+                    "type": "path",
+                    "stroke": "${lineColor}",
+                    "strokeWidth": "${lineHeight}",
+                    "strokeDashArray": [
+                        "${strokeDashSize}"
+                    ],
+                    "pathData": "M 0,${vectorHeight + lineVerticalOffset} h ${vectorWidth}"
+                }
+            ]
+        },
+        "avoVerticalTickGraphic": {
+            "type": "AVG",
+            "version": "1.0",
+            "parameters": [
+                {
+                    "name": "vectorWidth",
+                    "description": "Total width to play with.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "vectorHeight",
+                    "description": "Total height to play with.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "lineColor",
+                    "description": "Line color.",
+                    "type": "color",
+                    "default": "#ffffff35"
+                },
+                {
+                    "name": "lineWidth",
+                    "description": "Width of the line.",
+                    "default": "1"
+                }
+            ],
+            "height": "${vectorHeight}",
+            "width": "${vectorWidth}",
+            "items": [
+                {
+                    "type": "path",
+                    "stroke": "${lineColor}",
+                    "strokeWidth": "${lineWidth}",
+                    "pathData": "M ${vectorWidth / 2},${vectorHeight} V ${-vectorHeight}"
+                }
+            ]
+        },
+        "avoLinePathGraphic": {
+            "type": "AVG",
+            "version": "1.0",
+            "parameters": [
+                {
+                    "name": "vectorWidth",
+                    "description": "Total width to play with.",
+                    "type": "number",
+                    "default": "200"
+                },
+                {
+                    "name": "vectorHeight",
+                    "description": "Total height to play with.",
+                    "type": "number",
+                    "default": "100"
+                },
+                {
+                    "name": "mainPathStrokeWidth",
+                    "description": "Width of the stroke of the main path.",
+                    "type": "number",
+                    "default": "@avoLineWidth"
+                },
+                {
+                    "name": "mainPathStrokeColor",
+                    "description": "Color for the main stroke.",
+                    "type": "color"
+                },
+                {
+                    "name": "mainPathData",
+                    "description": "Path data."
+                },
+                {
+                    "name": "currX",
+                    "description": "Largest x-coord drawn so far in opening animation.",
+                    "type": "number"
+                },
+                {
+                    "name": "lineGradientOpacity",
+                    "description": "fill opacity of line gradient",
+                    "type": "number",
+                    "default": 0.0
+                },
+                {
+                    "name": "lineStrokeOpacity",
+                    "description": "opacity of line stroke",
+                    "type": "number",
+                    "default": 0.6
+                }
+            ],
+            "width": "${vectorWidth}",
+            "height": "${vectorHeight}",
+            "items": [
+                {
+                    "type": "group",
+                    "clipPath": "m 0,${vectorHeight} L 0 0 L ${currX} 0 L ${currX} ${vectorHeight}",
+                    "items": [
+                        {
+                            "type": "path",
+                            "strokeWidth": "0",
+                            "pathData": "${mainPathData} V ${vectorHeight} H 0",
+                            "fill": {
+                                "inputRange": [
+                                    0,
+                                    1
+                                ],
+                                "colorRange": [
+                                    "${mainPathStrokeColor}",
+                                    "rgba(${mainPathStrokeColor}, 0)"
+                                ],
+                                "type": "linear",
+                                "x1": 0,
+                                "y1": 0,
+                                "x2": 0,
+                                "y2": 1,
+                                "units": "boundingBox"
+                            },
+                            "fillOpacity": "${lineGradientOpacity}"
+                        },
+                        {
+                            "type": "path",
+                            "stroke": "${mainPathStrokeColor}",
+                            "strokeWidth": "${mainPathStrokeWidth}",
+                            "pathData": "${mainPathData}",
+                            "strokeOpacity": "${lineStrokeOpacity}"
+                        }
+                    ]
+                }
+            ]
+        },
+        "avoDotGraphic": {
+            "type": "AVG",
+            "version": "1.0",
+            "parameters": [
+                {
+                    "name": "size",
+                    "description": "Side length of canvas.",
+                    "type": "number",
+                    "default": 14
+                },
+                {
+                    "name": "radius",
+                    "description": "Radius of the dot. (Should be a tiny bit smaller than size/2 so dot is not truncated.)",
+                    "type": "number",
+                    "default": 5
+                },
+                {
+                    "name": "dotColor",
+                    "description": "Colour of the dot.",
+                    "type": "color",
+                    "default": "ffffff33"
+                }
+            ],
+            "height": "${size}",
+            "width": "${size}",
+            "items": [
+                {
+                    "type": "path",
+                    "fill": "${dotColor}",
+                    "stroke": "${dotColor}",
+                    "pathData": "M ${(size / 2) - radius},${size / 2} a ${radius},${radius},0,1,0,${radius * 2},0 a ${radius},${radius},0,1,0,${-radius * 2},0"
+                }
+            ]
+        },
+        "avoHighlightLineGraphic": {
+            "type": "AVG",
+            "version": "1.0",
+            "parameters": [
+                {
+                    "name": "vectorWidth",
+                    "description": "Total width to play with.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "vectorHeight",
+                    "description": "Total height to play with.",
+                    "type": "number",
+                    "default": "100"
+                },
+                {
+                    "name": "highlightX",
+                    "description": "Highlight X viewport position.",
+                    "type": "number",
+                    "default": "2"
+                },
+                {
+                    "name": "highlightWidth",
+                    "description": "Highlight vertical line width.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "lineColor",
+                    "description": "Highlight vertical line color.",
+                    "type": "color",
+                    "default": "@avoHighlightLineColor"
+                }
+            ],
+            "height": "${vectorHeight}",
+            "width": "${vectorWidth}",
+            "items": [
+                {
+                    "type": "path",
+                    "stroke": "${lineColor}",
+                    "strokeWidth": "${highlightWidth}",
+                    "pathData": "M ${highlightX},0 v ${vectorHeight}"
+                }
+            ]
+        },
+        "avoHoverPathGraphic": {
+            "type": "AVG",
+            "version": "1.0",
+            "parameters": [
+                {
+                    "name": "vectorWidth",
+                    "description": "Total width to play with.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "vectorHeight",
+                    "description": "Total height to play with.",
+                    "type": "number",
+                    "default": "100"
+                },
+                {
+                    "name": "hoverData",
+                    "description": "The hover text displayed when there is a touch event",
+                    "type": "string"
+                },
+                {
+                    "name": "hoverTextColor",
+                    "description": "Color for the hovering text.",
+                    "type": "color",
+                    "default": "@avoColorHoverTextDefault"
+                },
+                {
+                    "name": "highlightX",
+                    "description": "Highlight Y viewport position.",
+                    "type": "number",
+                    "default": "2"
+                },
+                {
+                    "name": "highlightY",
+                    "description": "Highlight Y viewport position.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "idx",
+                    "description": "the index of the given hoverData in the data array `hover`",
+                    "type": "number"
+                },
+                {
+                    "name": "hoverFontSize",
+                    "type": "number",
+                    "description": "Font size of hover text value",
+                    "default": "@avoHoverPrimaryFontSize"
+                },
+                {
+                    "name": "hoverFontWeight",
+                    "type": "number",
+                    "description": "Font weight of hover text",
+                    "default": "@avoHoverFontWeight"
+                },
+                {
+                    "name": "minY",
+                    "type":  "number",
+                    "description": "Smallest allowed y-pos for this element."
+                },
+                {
+                    "name": "maxY",
+                    "type": "number",
+                    "description": "Largest allowed y-pos for this element."
+                },
+                {
+                    "name": "textWidth",
+                    "type": "number",
+                    "description": "Estimated width of the primary text."
+                },
+                {
+                    "name": "hoverClipX",
+                    "description": "clipping x position in line chart animation",
+                    "type": "number",
+                    "default": 2
+                }
+
+            ],
+            "height": "${vectorHeight}",
+            "width": "${vectorWidth}",
+            "item": {
+                "type": "group",
+                "clipPath": "m 0,${height} L 0 0 L ${hoverClipX * width / 2} 0 L ${hoverClipX * width / 2} ${height}",
+                "items": [
+                    {
+                        "type": "text",
+                        "fill": "${hoverTextColor}",
+                        "fontSize": "${hoverFontSize}",
+                        "fontWeight": "${hoverFontWeight}",
+                        "text": "${(1 - highlightX/2)*width > (textWidth) + @avoHoverOffset ? hoverData : null}",
+                        "x": "${Math.clamp(0, highlightX * width / 2 + @avoHoverOffset, width - textWidth)}",
+                        "y": "${Math.clamp(minY, highlightY * height + @avoHoverVerticalMiddleAlignmentOffset * @avoHoverPrimaryFontSize + idx * @avoHoverPrimaryFontSize, maxY)}",
+                        "textAnchor": "start"
+                    },
+                    {
+                        "type": "text",
+                        "fill": "${hoverTextColor}",
+                        "fontSize": "${hoverFontSize}",
+                        "fontWeight": "${hoverFontWeight}",
+                        "text": "${(1 - highlightX/2)*width <= (textWidth) + @avoHoverOffset ? hoverData : null}",
+                        "x": "${Math.clamp(textWidth, highlightX * width / 2 - @avoHoverOffset, width)}",
+                        "y": "${Math.clamp(minY, highlightY * height + @avoHoverVerticalMiddleAlignmentOffset * @avoHoverPrimaryFontSize + idx * @avoHoverPrimaryFontSize, maxY)}",
+                        "textAnchor": "end"
+                    }
+                ]
+            }
+        },
+        "avoTouchPadGraphic": {
+            "type": "AVG",
+            "version": "1.0",
+            "parameters": [
+                {
+                    "name": "vectorWidth",
+                    "description": "Total width to play with.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "vectorHeight",
+                    "description": "Total height to play with.",
+                    "type": "number",
+                    "default": "100"
+                }
+            ],
+            "height": "${vectorHeight}",
+            "width": "${vectorWidth}",
+            "viewportWidth": 2,
+            "viewportHeight": 1,
+            "items": []
+        },
+        "avoConstantLineGraphic": {
+            "type": "AVG",
+            "version": "1.0",
+            "parameters": [
+                {
+                    "name": "vectorWidth",
+                    "description": "Total width to play with.",
+                    "type": "number",
+                    "default": "1"
+                },
+                {
+                    "name": "vectorHeight",
+                    "description": "Total height to play with.",
+                    "type": "number",
+                    "default": "100"
+                },
+                {
+                    "name": "lineColor",
+                    "description": "Color of the line.",
+                    "default": "rgba(200, 200, 200, 0.85)"
+                },
+                {
+                    "name": "constantLineYPosition",
+                    "description": "normalized y position of constant line"
+                },
+                {
+                    "name": "currX",
+                    "description": "Largest x-coord drawn so far in opening animation.",
+                    "type": "number",
+                    "default": 2.0
+                }
+            ],
+            "height": "${vectorHeight}",
+            "width": "${vectorWidth}",
+            "items": [
+                {
+                    "type": "group",
+                    "clipPath": "m 0,${vectorHeight} L 0 0 L ${currX} 0 L ${currX} ${vectorHeight}",
+                    "items": [{
+                            "type": "path",
+                            "stroke": "${lineColor}",
+                            "strokeWidth": 1,
+                            "pathData": "M 0,${constantLineYPosition * vectorHeight} h ${vectorWidth}"
+                    }]
+                }
+            ]
+        }
+    },
+    "commands": {},
+    "layouts": {
+        "avoValueTickItemLayout": {
+            "parameters": [
+                {
+                    "name": "elementIndex",
+                    "description": "Index of this element"
+                },
+                {
+                    "name": "totalNumberOfTicks",
+                    "description": "Number of ticks in total"
+                },
+                {
+                    "name": "tickText",
+                    "description": "Text to render in this tick"
+                },
+                {
+                    "name": "textWidth",
+                    "description": "An estimate of the width of the tick text."
+                },
+                {
+                    "name": "height",
+                    "description": "Height of this element."
+                },
+                {
+                    "name": "lineWidth",
+                    "description": "Width of the entire line chart - used for draing the horizontal lines."
+                },
+                {
+                    "name": "top",
+                    "description": "Margin above this element."
+                },
+                {
+                    "name": "theme",
+                    "description": "Color palette (light/dark). Default to dark",
+                    "type": "string",
+                    "default": "dark"
+                },
+                {
+                    "name": "startTickIndex",
+                    "description": "the index of tick 0 if it exists otherwise 0",
+                    "type": "number",
+                    "default": 0
+                }
+            ],
+            "item": [
+                {
+                    "type": "Container",
+                    "direction": "row",
+                    "top": "${top}",
+                    "items": [
+                        {
+                            "type": "Text",
+                            "text": "${tickText}",
+                            "style": "avoTextTickStyle",
+                            "lineHeight": 1,
+                            "textAlign": "right",
+                            "height": "${height}",
+                            "width": "${textWidth}",
+                            "maxLines": 1,
+                            "textAlignVertical": "center",
+                            "paddingRight": "@avoTickPadding"
+                        },
+                        {
+                            "type": "VectorGraphic",
+                            "position": "absolute",
+                            "height": "${height}",
+                            "width": "${lineWidth}",
+                            "left": "${textWidth}",
+                            "source": "avoHorizontalTickGraphic",
+                            "vectorWidth": "${lineWidth}",
+                            "vectorHeight": "${height}",
+                            "lineVerticalOffset": "${-height * 0.5}",
+                            "strokeDashSize": "${(elementIndex != startTickIndex) ? 4 : 0}",
+                            "lineColor": "${elementIndex != startTickIndex ? @avoColorTickItemDefault : @avoZeroTickColor}"
+                        }
+                    ],
+                    "onMount": [{
+                        "type": "Parallel",
+                        "commands": [{
+                                "type": "AnimateItem",
+                                "easing": "ease-in-out",
+                                "duration": "${@avoValueAxisAnimationTime + (totalNumberOfTicks * @avoValueAxisStaggerDelay)}",
+                                "value": [
+                                    {
+                                        "property": "opacity",
+                                        "from": 0,
+                                        "to": 1
+                                    }
+                                ]
+                            },{
+                                "type": "AnimateItem",
+                                "when": "${elementIndex > 0}",
+                                "easing": "ease-in-out",
+                                "delay": "${(elementIndex - 1) * @avoValueAxisStaggerDelay}",
+                                "duration": "${@avoValueAxisAnimationTime}",
+                                "value": [
+                                    {
+                                        "property": "transform",
+                                        "from": [
+                                            { "translateY": "${height * (totalNumberOfTicks - 1)}" }
+                                        ],
+                                        "to": [
+                                            { "translateY": 0 }
+                                        ]
+                                    }
+                                ]
+                        }]
+                    }]
+                }
+            ]
+        },
+        "avoPrimaryTickItemLayout": {
+            "parameters": [
+                {
+                    "name": "elementIndex",
+                    "description": "Index of this element"
+                },
+                {
+                    "name": "totalNumberOfTicks",
+                    "description": "Number of ticks in total"
+                },
+                {
+                    "name": "tickText",
+                    "description": "Text to render in this tick"
+                },
+                {
+                    "name": "width",
+                    "description": "Width of the layout."
+                },
+                {
+                    "name": "theme",
+                    "description": "Color palette (light/dark). Default to dark",
+                    "type": "string",
+                    "default": "dark"
+                }
+            ],
+            "item": [
+                {
+                    "type": "Container",
+                    "direction": "column",
+                    "bind": [
+                        {
+                            "name": "isVisible",
+                            "value": "${(totalNumberOfTicks <= 2) || (elementIndex % @avoPrimaryLegendSkip == 0)}"
+                        }
+                    ],
+                    "items": [
+                        {
+                            "type": "VectorGraphic",
+                            "when": "${isVisible}",
+                            "width": "${width}",
+                            "height": "@avoPrimaryTickLength",
+                            "source": "avoVerticalTickGraphic",
+                            "vectorWidth": "${width}",
+                            "vectorHeight": "@avoPrimaryTickLength"
+                        },
+                        {
+                            "type": "Text",
+                            "when": "${isVisible}",
+                            "text": "${tickText}",
+                            "style": "avoTextTickStyle",
+                            "top": "@avoTickPadding",
+                            "textAlignVertical": "top",
+                            "textAlign": "center",
+                            "width": "${width}",
+                            "maxLines": 1,
+                            "lineHeight": 1,
+                            "onMount": [{
+                                "type": "Parallel",
+                                "commands": [{
+                                        "type": "AnimateItem",
+                                        "easing": "ease-in-out",
+                                        "duration": "${@avoPrimaryAxisAnimationTime}",
+                                        "value": [
+                                            {
+                                                "property": "transform",
+                                                "from": [
+                                                    { "translateY": "-20dp" }
+                                                ],
+                                                "to": [
+                                                    { "translateY": 0 }
+                                                ]
+                                            }
+                                        ]
+                                }]
+                            }]
+                        }
+                    ],
+                    "onMount": [{
+                        "type": "Parallel",
+                        "commands": [{
+                                "type": "AnimateItem",
+                                "easing": "ease-in-out",
+                                "duration": "${@avoPrimaryAxisAnimationTime}",
+                                "value": [
+                                    {
+                                        "property": "opacity",
+                                        "from": 0,
+                                        "to": 1
+                                    }
+                                ]
+                            }]
+                    }]
+                }
+            ]
+        },
+        "avoLinePathLayout": {
+            "parameters": [
+                {
+                    "name": "lineCanvasTop",
+                    "description": "Margin above the inner-level line canvas.",
+                    "type": "dimension"
+                },
+                {
+                    "name": "lineCanvasLeft",
+                    "description": "Margin to the left of the inner-level line canvas.",
+                    "type": "dimension"
+                },
+                {
+                    "name": "lineCanvasWidth",
+                    "description": "Width of the inner-level line canvas.",
+                    "type": "dimension"
+                },
+                {
+                    "name": "lineCanvasHeight",
+                    "description": "Height of the inner-level line canvas.",
+                    "type": "dimension"
+                },
+                {
+                    "name": "highlightCanvasWidth",
+                    "description": "Width of outer-level container for highlight-dot to move inside of.",
+                    "type": "dimension"
+                },
+                {
+                    "name": "highlightCanvasHeight",
+                    "description": "Height of outer-level container for highlight-dot to move inside of.",
+                    "type": "dimension"
+                },
+                {
+                    "name": "pathData",
+                    "description": "Data object for this path.",
+                    "type": "object"
+                },
+                {
+                    "name": "lineX",
+                    "description": "Largest x-coord drawn so far in opening animation, in normalised coordinates [0, 2].",
+                    "type": "number",
+                    "default": 2.0
+                },
+                {
+                    "name": "theme",
+                    "description": "Color palette (light/dark). Default to dark",
+                    "type": "string",
+                    "default": "dark"
+                },
+                {
+                    "name": "hoverOn",
+                    "description": "Hover callouts is on",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "useCalloutDataAsHover",
+                    "description": "Whether to use callouts data for hover display",
+                    "type": "boolean",
+                    "default": false
+                }
+
+            ],
+            "item": [
+                {
+                    "type": "Container",
+                    "top": "${lineCanvasTop - (@avoHighlightDotOffset / 2)}",
+                    "left": "${lineCanvasLeft - (@avoHighlightDotOffset / 2)}",
+                    "width": "${highlightCanvasWidth}",
+                    "height": "${highlightCanvasHeight}",
+                    "position": "absolute",
+                    "bind": [
+                        {
+                            "name": "cellIndex_OLD",
+                            "value": "${Math.floor(pathData.animationGrid.stride * lineX / 2)}"
+                        },
+                        {
+                            "name": "lerpStartPt_OLD",
+                            "value": "${lineX >= pathData.animationGrid.cells[cellIndex_OLD + 1] ? pathData.animationGrid.cells[cellIndex_OLD + 1] : pathData.animationGrid.cells[cellIndex_OLD]}"
+                        },
+                        {
+                            "name": "lerpEndPt_OLD",
+                            "value": "${lineX >= pathData.animationGrid.cells[cellIndex_OLD + 1] ? pathData.animationGrid.cells[cellIndex_OLD + 2] : pathData.animationGrid.cells[cellIndex_OLD + 1]}"
+                        },
+                        {
+                            "name": "animIndex",
+                            "value": "${Math.floor((pathData.animationGrid.length - 1) * lineX / 2)}"
+                        },
+                        {
+                            "name": "prevIndex",
+                            "value": "${pathData.animationGrid[animIndex]}"
+                        },
+                        {
+                            "name": "nextIndex",
+                            "value": "${pathData.animationGrid[animIndex + 1]}"
+                        },
+                        {
+                            "name": "lerpStartPt_NEW",
+                            "value": "${lineX >= pathData.points[nextIndex].x && prevIndex != nextIndex ? pathData.points[prevIndex + 1] : pathData.points[prevIndex]}"
+                        },
+                        {
+                            "name": "lerpEndPt_NEW",
+                            "value": "${lineX >= pathData.points[nextIndex].x ? pathData.points[nextIndex + 1] : pathData.points[nextIndex]}"
+                        },
+                        {
+                            "name": "lerpStartPt",
+                            "value": "${pathData.animationGrid.stride == null ? lerpStartPt_NEW : lerpStartPt_OLD}"
+                        },
+                        {
+                            "name": "lerpEndPt",
+                            "value": "${pathData.animationGrid.stride == null ? lerpEndPt_NEW : lerpEndPt_OLD}"
+                        },
+                        {
+                            "name": "lerpParam",
+                            "value": "${(lineX - lerpStartPt.x) / (lerpEndPt.x - lerpStartPt.x)}"
+                        },
+                        {
+                            "name": "lineY",
+                            "value": "${((1 - lerpParam) * lerpStartPt.y) + (lerpParam * lerpEndPt.y)}"
+                        },
+                        {
+                            "name": "highlightIndex",
+                            "value": "${(touchX == -1) ? pathData.highlight : pathData.touchGrid[touchIndex]}"
+                        },
+                        {
+                            "name": "highlightedPoint_NEW",
+                            "value": "${pathData.points[highlightIndex]}"
+                        },
+                        {
+                            "name": "highlightedPoint_OLD",
+                            "value": "${touchX == -1 ? pathData.highlight : pathData.touchGrid.cells[touchIndex]}"
+                        },
+                        {
+                            "name": "highlightedPoint",
+                            "value": "${useLegacyTouch ? highlightedPoint_OLD : highlightedPoint_NEW}"
+                        },
+                        {
+                            "name": "isAnimatingHighlight",
+                            "value": "${lineX < highlightedPoint.x}"
+                        },
+                        {
+                            "name": "isHighlightVisible",
+                            "value": "${useLegacyTouch ? true : highlightIndex >= 0}"
+                        },
+                        {
+                            "name": "normHighlightX",
+                            "value": "${isAnimatingHighlight ? lineX : highlightedPoint.x}"
+                        },
+                        {
+                            "name": "normHighlightY",
+                            "value": "${isAnimatingHighlight ? lineY : highlightedPoint.y}"
+                        },
+                        {
+                            "name": "hoverTextSpace",
+                            "value": "${hoverOn ? (useCalloutDataAsHover ?  (pathData.maxCalloutTextWidth ?? @avoDefaultHoverTextMaxWidth) * @avoHoverPrimaryFontSize : (pathData.maxHoverTextWidth ?? @avoDefaultHoverTextMaxWidth) * @avoHoverPrimaryFontSize) + @avoHoverOffset : 0}"
+                        },
+                        {
+                            "name": "realLineX",
+                            "value": "${lineX * lineCanvasWidth / 2}"
+                        },
+                        {
+                            "name": "realLineY",
+                            "value": "${lineY * lineCanvasHeight}"
+                        },
+                        {
+                            "name": "realHighlightX",
+                            "value": "${normHighlightX * lineCanvasWidth / 2}"
+                        },
+                        {
+                            "name": "realHighlightY",
+                            "value": "${normHighlightY * lineCanvasHeight}"
+                        }
+                    ],
+                    "items": [
+                        {
+                            "type": "Container",
+                            "top": "${@avoHighlightDotOffset / 2}",
+                            "left": "${@avoHighlightDotOffset / 2}",
+                            "width": "${lineCanvasWidth}",
+                            "height": "${lineCanvasHeight}",
+                            "position": "absolute",
+                            "bind": [
+                                {
+                                    "name": "w",
+                                    "value": "${lineCanvasWidth / 2}",
+                                    "type": "number"
+                                },
+                                {
+                                    "name": "h",
+                                    "value": "${lineCanvasHeight}",
+                                    "type": "number"
+                                },
+                                {
+                                    "name": "d",
+                                    "value": "${pathData.points}"
+                                },
+                                {
+                                    "name": "linePathAvg",
+                                    "value": "M${d[0].x*w+' '+d[0].y*h+(d[1]?'L'+d[1].x*w+' '+d[1].y*h:'')+(d[2]?'L'+d[2].x*w+' '+d[2].y*h:'')+(d[3]?'L'+d[3].x*w+' '+d[3].y*h:'')+(d[4]?'L'+d[4].x*w+' '+d[4].y*h:'')+(d[5]?'L'+d[5].x*w+' '+d[5].y*h:'')+(d[6]?'L'+d[6].x*w+' '+d[6].y*h:'')+(d[7]?'L'+d[7].x*w+' '+d[7].y*h:'')+(d[8]?'L'+d[8].x*w+' '+d[8].y*h:'')+(d[9]?'L'+d[9].x*w+' '+d[9].y*h:'')+(d[10]?'L'+d[10].x*w+' '+d[10].y*h:'')+(d[11]?'L'+d[11].x*w+' '+d[11].y*h:'')+(d[12]?'L'+d[12].x*w+' '+d[12].y*h:'')+(d[13]?'L'+d[13].x*w+' '+d[13].y*h:'')+(d[14]?'L'+d[14].x*w+' '+d[14].y*h:'')+(d[15]?'L'+d[15].x*w+' '+d[15].y*h:'')+(d[16]?'L'+d[16].x*w+' '+d[16].y*h:'')+(d[17]?'L'+d[17].x*w+' '+d[17].y*h:'')+(d[18]?'L'+d[18].x*w+' '+d[18].y*h:'')+(d[19]?'L'+d[19].x*w+' '+d[19].y*h:'')+(d[20]?'L'+d[20].x*w+' '+d[20].y*h:'')+(d[21]?'L'+d[21].x*w+' '+d[21].y*h:'')+(d[22]?'L'+d[22].x*w+' '+d[22].y*h:'')+(d[23]?'L'+d[23].x*w+' '+d[23].y*h:'')+(d[24]?'L'+d[24].x*w+' '+d[24].y*h:'')+(d[25]?'L'+d[25].x*w+' '+d[25].y*h:'')+(d[26]?'L'+d[26].x*w+' '+d[26].y*h:'')+(d[27]?'L'+d[27].x*w+' '+d[27].y*h:'')+(d[28]?'L'+d[28].x*w+' '+d[28].y*h:'')+(d[29]?'L'+d[29].x*w+' '+d[29].y*h:'')+(d[30]?'L'+d[30].x*w+' '+d[30].y*h:'')+(d[31]?'L'+d[31].x*w+' '+d[31].y*h:'')+(d[32]?'L'+d[32].x*w+' '+d[32].y*h:'')+(d[33]?'L'+d[33].x*w+' '+d[33].y*h:'')+(d[34]?'L'+d[34].x*w+' '+d[34].y*h:'')+(d[35]?'L'+d[35].x*w+' '+d[35].y*h:'')+(d[36]?'L'+d[36].x*w+' '+d[36].y*h:'')+(d[37]?'L'+d[37].x*w+' '+d[37].y*h:'')+(d[38]?'L'+d[38].x*w+' '+d[38].y*h:'')+(d[39]?'L'+d[39].x*w+' '+d[39].y*h:'')+(d[40]?'L'+d[40].x*w+' '+d[40].y*h:'')+(d[41]?'L'+d[41].x*w+' '+d[41].y*h:'')+(d[42]?'L'+d[42].x*w+' '+d[42].y*h:'')+(d[43]?'L'+d[43].x*w+' '+d[43].y*h:'')+(d[44]?'L'+d[44].x*w+' '+d[44].y*h:'')+(d[45]?'L'+d[45].x*w+' '+d[45].y*h:'')+(d[46]?'L'+d[46].x*w+' '+d[46].y*h:'')+(d[47]?'L'+d[47].x*w+' '+d[47].y*h:'')+(d[48]?'L'+d[48].x*w+' '+d[48].y*h:'')+(d[49]?'L'+d[49].x*w+' '+d[49].y*h:'')+(d[50]?'L'+d[50].x*w+' '+d[50].y*h:'')+(d[51]?'L'+d[51].x*w+' '+d[51].y*h:'')+(d[52]?'L'+d[52].x*w+' '+d[52].y*h:'')+(d[53]?'L'+d[53].x*w+' '+d[53].y*h:'')+(d[54]?'L'+d[54].x*w+' '+d[54].y*h:'')+(d[55]?'L'+d[55].x*w+' '+d[55].y*h:'')+(d[56]?'L'+d[56].x*w+' '+d[56].y*h:'')+(d[57]?'L'+d[57].x*w+' '+d[57].y*h:'')+(d[58]?'L'+d[58].x*w+' '+d[58].y*h:'')+(d[59]?'L'+d[59].x*w+' '+d[59].y*h:'')+(d[60]?'L'+d[60].x*w+' '+d[60].y*h:'')+(d[61]?'L'+d[61].x*w+' '+d[61].y*h:'')+(d[62]?'L'+d[62].x*w+' '+d[62].y*h:'')+(d[63]?'L'+d[63].x*w+' '+d[63].y*h:'')+(d[64]?'L'+d[64].x*w+' '+d[64].y*h:'')+(d[65]?'L'+d[65].x*w+' '+d[65].y*h:'')+(d[66]?'L'+d[66].x*w+' '+d[66].y*h:'')+(d[67]?'L'+d[67].x*w+' '+d[67].y*h:'')+(d[68]?'L'+d[68].x*w+' '+d[68].y*h:'')+(d[69]?'L'+d[69].x*w+' '+d[69].y*h:'')+(d[70]?'L'+d[70].x*w+' '+d[70].y*h:'')+(d[71]?'L'+d[71].x*w+' '+d[71].y*h:'')+(d[72]?'L'+d[72].x*w+' '+d[72].y*h:'')+(d[73]?'L'+d[73].x*w+' '+d[73].y*h:'')+(d[74]?'L'+d[74].x*w+' '+d[74].y*h:'')+(d[75]?'L'+d[75].x*w+' '+d[75].y*h:'')+(d[76]?'L'+d[76].x*w+' '+d[76].y*h:'')+(d[77]?'L'+d[77].x*w+' '+d[77].y*h:'')+(d[78]?'L'+d[78].x*w+' '+d[78].y*h:'')+(d[79]?'L'+d[79].x*w+' '+d[79].y*h:'')+(d[80]?'L'+d[80].x*w+' '+d[80].y*h:'')+(d[81]?'L'+d[81].x*w+' '+d[81].y*h:'')+(d[82]?'L'+d[82].x*w+' '+d[82].y*h:'')+(d[83]?'L'+d[83].x*w+' '+d[83].y*h:'')+(d[84]?'L'+d[84].x*w+' '+d[84].y*h:'')+(d[85]?'L'+d[85].x*w+' '+d[85].y*h:'')+(d[86]?'L'+d[86].x*w+' '+d[86].y*h:'')+(d[87]?'L'+d[87].x*w+' '+d[87].y*h:'')+(d[88]?'L'+d[88].x*w+' '+d[88].y*h:'')+(d[89]?'L'+d[89].x*w+' '+d[89].y*h:'')+(d[90]?'L'+d[90].x*w+' '+d[90].y*h:'')+(d[91]?'L'+d[91].x*w+' '+d[91].y*h:'')+(d[92]?'L'+d[92].x*w+' '+d[92].y*h:'')+(d[93]?'L'+d[93].x*w+' '+d[93].y*h:'')+(d[94]?'L'+d[94].x*w+' '+d[94].y*h:'')+(d[95]?'L'+d[95].x*w+' '+d[95].y*h:'')+(d[96]?'L'+d[96].x*w+' '+d[96].y*h:'')+(d[97]?'L'+d[97].x*w+' '+d[97].y*h:'')+(d[98]?'L'+d[98].x*w+' '+d[98].y*h:'')+(d[99]?'L'+d[99].x*w+' '+d[99].y*h:'')+(d[100]?'L'+d[100].x*w+' '+d[100].y*h:'')+(d[101]?'L'+d[101].x*w+' '+d[101].y*h:'')+(d[102]?'L'+d[102].x*w+' '+d[102].y*h:'')+(d[103]?'L'+d[103].x*w+' '+d[103].y*h:'')+(d[104]?'L'+d[104].x*w+' '+d[104].y*h:'')+(d[105]?'L'+d[105].x*w+' '+d[105].y*h:'')+(d[106]?'L'+d[106].x*w+' '+d[106].y*h:'')+(d[107]?'L'+d[107].x*w+' '+d[107].y*h:'')+(d[108]?'L'+d[108].x*w+' '+d[108].y*h:'')+(d[109]?'L'+d[109].x*w+' '+d[109].y*h:'')+(d[110]?'L'+d[110].x*w+' '+d[110].y*h:'')+(d[111]?'L'+d[111].x*w+' '+d[111].y*h:'')+(d[112]?'L'+d[112].x*w+' '+d[112].y*h:'')+(d[113]?'L'+d[113].x*w+' '+d[113].y*h:'')+(d[114]?'L'+d[114].x*w+' '+d[114].y*h:'')+(d[115]?'L'+d[115].x*w+' '+d[115].y*h:'')+(d[116]?'L'+d[116].x*w+' '+d[116].y*h:'')+(d[117]?'L'+d[117].x*w+' '+d[117].y*h:'')+(d[118]?'L'+d[118].x*w+' '+d[118].y*h:'')+(d[119]?'L'+d[119].x*w+' '+d[119].y*h:'')+(d[120]?'L'+d[120].x*w+' '+d[120].y*h:'')+(d[121]?'L'+d[121].x*w+' '+d[121].y*h:'')+(d[122]?'L'+d[122].x*w+' '+d[122].y*h:'')+(d[123]?'L'+d[123].x*w+' '+d[123].y*h:'')+(d[124]?'L'+d[124].x*w+' '+d[124].y*h:'')+(d[125]?'L'+d[125].x*w+' '+d[125].y*h:'')+(d[126]?'L'+d[126].x*w+' '+d[126].y*h:'')+(d[127]?'L'+d[127].x*w+' '+d[127].y*h:'')+(d[128]?'L'+d[128].x*w+' '+d[128].y*h:'')+(d[129]?'L'+d[129].x*w+' '+d[129].y*h:'')+(d[130]?'L'+d[130].x*w+' '+d[130].y*h:'')+(d[131]?'L'+d[131].x*w+' '+d[131].y*h:'')+(d[132]?'L'+d[132].x*w+' '+d[132].y*h:'')+(d[133]?'L'+d[133].x*w+' '+d[133].y*h:'')+(d[134]?'L'+d[134].x*w+' '+d[134].y*h:'')+(d[135]?'L'+d[135].x*w+' '+d[135].y*h:'')+(d[136]?'L'+d[136].x*w+' '+d[136].y*h:'')+(d[137]?'L'+d[137].x*w+' '+d[137].y*h:'')+(d[138]?'L'+d[138].x*w+' '+d[138].y*h:'')+(d[139]?'L'+d[139].x*w+' '+d[139].y*h:'')+(d[140]?'L'+d[140].x*w+' '+d[140].y*h:'')+(d[141]?'L'+d[141].x*w+' '+d[141].y*h:'')+(d[142]?'L'+d[142].x*w+' '+d[142].y*h:'')+(d[143]?'L'+d[143].x*w+' '+d[143].y*h:'')+(d[144]?'L'+d[144].x*w+' '+d[144].y*h:'')+(d[145]?'L'+d[145].x*w+' '+d[145].y*h:'')+(d[146]?'L'+d[146].x*w+' '+d[146].y*h:'')+(d[147]?'L'+d[147].x*w+' '+d[147].y*h:'')+(d[148]?'L'+d[148].x*w+' '+d[148].y*h:'')+(d[149]?'L'+d[149].x*w+' '+d[149].y*h:'')+(d[150]?'L'+d[150].x*w+' '+d[150].y*h:'')+(d[151]?'L'+d[151].x*w+' '+d[151].y*h:'')+(d[152]?'L'+d[152].x*w+' '+d[152].y*h:'')+(d[153]?'L'+d[153].x*w+' '+d[153].y*h:'')+(d[154]?'L'+d[154].x*w+' '+d[154].y*h:'')+(d[155]?'L'+d[155].x*w+' '+d[155].y*h:'')+(d[156]?'L'+d[156].x*w+' '+d[156].y*h:'')+(d[157]?'L'+d[157].x*w+' '+d[157].y*h:'')+(d[158]?'L'+d[158].x*w+' '+d[158].y*h:'')+(d[159]?'L'+d[159].x*w+' '+d[159].y*h:'')+(d[160]?'L'+d[160].x*w+' '+d[160].y*h:'')+(d[161]?'L'+d[161].x*w+' '+d[161].y*h:'')+(d[162]?'L'+d[162].x*w+' '+d[162].y*h:'')+(d[163]?'L'+d[163].x*w+' '+d[163].y*h:'')+(d[164]?'L'+d[164].x*w+' '+d[164].y*h:'')+(d[165]?'L'+d[165].x*w+' '+d[165].y*h:'')+(d[166]?'L'+d[166].x*w+' '+d[166].y*h:'')+(d[167]?'L'+d[167].x*w+' '+d[167].y*h:'')+(d[168]?'L'+d[168].x*w+' '+d[168].y*h:'')+(d[169]?'L'+d[169].x*w+' '+d[169].y*h:'')+(d[170]?'L'+d[170].x*w+' '+d[170].y*h:'')+(d[171]?'L'+d[171].x*w+' '+d[171].y*h:'')+(d[172]?'L'+d[172].x*w+' '+d[172].y*h:'')+(d[173]?'L'+d[173].x*w+' '+d[173].y*h:'')+(d[174]?'L'+d[174].x*w+' '+d[174].y*h:'')+(d[175]?'L'+d[175].x*w+' '+d[175].y*h:'')+(d[176]?'L'+d[176].x*w+' '+d[176].y*h:'')+(d[177]?'L'+d[177].x*w+' '+d[177].y*h:'')+(d[178]?'L'+d[178].x*w+' '+d[178].y*h:'')+(d[179]?'L'+d[179].x*w+' '+d[179].y*h:'')+(d[180]?'L'+d[180].x*w+' '+d[180].y*h:'')+(d[181]?'L'+d[181].x*w+' '+d[181].y*h:'')+(d[182]?'L'+d[182].x*w+' '+d[182].y*h:'')+(d[183]?'L'+d[183].x*w+' '+d[183].y*h:'')+(d[184]?'L'+d[184].x*w+' '+d[184].y*h:'')+(d[185]?'L'+d[185].x*w+' '+d[185].y*h:'')+(d[186]?'L'+d[186].x*w+' '+d[186].y*h:'')+(d[187]?'L'+d[187].x*w+' '+d[187].y*h:'')+(d[188]?'L'+d[188].x*w+' '+d[188].y*h:'')+(d[189]?'L'+d[189].x*w+' '+d[189].y*h:'')+(d[190]?'L'+d[190].x*w+' '+d[190].y*h:'')+(d[191]?'L'+d[191].x*w+' '+d[191].y*h:'')+(d[192]?'L'+d[192].x*w+' '+d[192].y*h:'')+(d[193]?'L'+d[193].x*w+' '+d[193].y*h:'')+(d[194]?'L'+d[194].x*w+' '+d[194].y*h:'')+(d[195]?'L'+d[195].x*w+' '+d[195].y*h:'')+(d[196]?'L'+d[196].x*w+' '+d[196].y*h:'')+(d[197]?'L'+d[197].x*w+' '+d[197].y*h:'')+(d[198]?'L'+d[198].x*w+' '+d[198].y*h:'')+(d[199]?'L'+d[199].x*w+' '+d[199].y*h:'')+(d[200]?'L'+d[200].x*w+' '+d[200].y*h:'')}",
+                                    "type": "string"
+                                }
+                            ],
+                            "items": [
+                                {
+                                    "type": "VectorGraphic",
+                                    "source": "avoLinePathGraphic",
+                                    "position": "absolute",
+                                    "vectorWidth": "${lineCanvasWidth}",
+                                    "vectorHeight": "${lineCanvasHeight}",
+                                    "mainPathStrokeColor": "${pathData.pathColor ?? @avoDefaultLineColor}",
+                                    "mainPathData": "${linePathAvg}",
+                                    "lineGradientOpacity": "${hoverOn ? @avoBottomLineGradientFillOpacity : @avoFrontLineGradientFillOpacity}",
+                                    "lineStrokeOpacity": "${hoverOn ? @avoBottomLineStrokeOpacity : @avoFrontLineStrokeOpacity}",
+                                    "currX": "${realLineX}"
+                                },
+                                {
+                                    "when": "${hoverOn}",
+                                    "type": "VectorGraphic",
+                                    "source": "avoLinePathGraphic",
+                                    "position": "absolute",
+                                    "vectorWidth": "${lineCanvasWidth}",
+                                    "vectorHeight": "${lineCanvasHeight}",
+                                    "mainPathStrokeColor": "${pathData.pathColor ?? @avoDefaultLineColor}",
+                                    "mainPathData": "${linePathAvg}",
+                                    "lineGradientOpacity": "@avoFrontLineGradientFillOpacity",
+                                    "lineStrokeOpacity": "@avoFrontLineStrokeOpacity",
+                                    "currX": "${touchX == -1 ? (useCalloutDataAsHover ? 0 : realLineX) : (lineCanvasWidth - realHighlightX > hoverTextSpace ? realHighlightX : 0)}"
+                                },
+                                {
+                                    "type": "VectorGraphic",
+                                    "source": "avoHighlightLineGraphic",
+                                    "lineColor": "${isHighlightVisible ? @avoHighlightLineColor : 'transparent'}",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "left": "0",
+                                    "top": "0",
+                                    "position": "absolute",
+                                    "vectorWidth": "${lineCanvasWidth}",
+                                    "vectorHeight": "${lineCanvasHeight}",
+                                    "highlightX": "${realHighlightX}"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "VectorGraphic",
+                            "source": "avoDotGraphic",
+                            "size": "@avoHighlightDotOffset",
+                            "radius": "@avoHighlightDotRadius",
+                            "position": "absolute",
+                            "dotColor": "${isHighlightVisible ? (pathData.pathColor ?? @avoDefaultLineColor) : 'transparent'}",
+                            "transform": [{
+                                "translateX": "${realHighlightX}",
+                                "translateY": "${realHighlightY}"
+                            }]
+                        }
+                    ]
+                }
+            ]
+        },
+        "avoConstantLineLayout": {
+            "parameters": [
+                {
+                    "name": "width",
+                    "description": "Width of the layout.",
+                    "type": "dimension"
+                },
+                {
+                    "name": "height",
+                    "description": "Height of the layout.",
+                    "type": "dimension"
+                },
+                {
+                    "name": "constantLineData",
+                    "description": "Data object for this constant line.",
+                    "type": "object"
+                },
+                {
+                    "name": "lineX",
+                    "description": "Largest x-coord drawn so far in opening animation.",
+                    "type": "number",
+                    "default": 2.0
+                },
+                {
+                    "name": "theme",
+                    "description": "Color pallet (light/dark). Default to dark",
+                    "type": "string",
+                    "default": "dark"
+                }
+            ],
+            "item": [
+                {
+                    "type": "Container",
+                    "width": "${width}",
+                    "height": "${height}",
+                    "position": "absolute",
+                    "bind": [
+                        {
+                            "name": "numberOfConstantLineLabels",
+                            "value": "${constantLineData.labels.length ?? 0}"
+                        },
+                        {
+                            "name": "labelsHeightPercentageEstimate",
+                            "value": "${Math.min(numberOfConstantLineLabels, 4) * 15}"
+                        },
+                        {
+                            "name": "linePositionPercentage",
+                            "value": "${constantLineData.position * 100}"
+                        },
+                        {
+                            "name": "labelPositionX",
+                            "value": "${constantLineData.labelX != null ? (100 * constantLineData.labelX / 2) : 0}"
+                        },
+                        {
+                            "name": "labelPositionY",
+                            "value": "${constantLineData.labelX != null ? (100 * constantLineData.labelY) : (labelsHeightPercentageEstimate >= linePositionPercentage ? linePositionPercentage : 0)}"
+                        },
+                        {
+                            "name": "labelWidth",
+                            "value": "${constantLineData.labelX != null ? (100 * constantLineData.labelWidth / 2) : 100}"
+                        },
+                        {
+                            "name": "labelHeight",
+                            "value": "${constantLineData.labelX != null ? (100 * constantLineData.labelHeight) : (labelsHeightPercentageEstimate >= linePositionPercentage ? 100 : linePositionPercentage)}"
+                        },
+                        {
+                            "name": "textAreaPosition",
+                            "value": "${labelPositionY >= linePositionPercentage ? 'under' : 'above'}"
+                        },
+                        {
+                            "name": "textLabelsAlignment",
+                            "value": "${constantLineData.style.horizontalAlignment != null ? constantLineData.style.horizontalAlignment : 'right'}"
+                        }
+                    ],
+                    "items": [
+                        {
+                            "type": "VectorGraphic",
+                            "source": "avoConstantLineGraphic",
+                            "width": "100%",
+                            "height": "100%",
+                            "left": "0",
+                            "top": "0",
+                            "position": "absolute",
+                            "vectorWidth": "${width}",
+                            "vectorHeight": "${height}",
+                            "constantLineYPosition": "${constantLineData.position}",
+                            "currX": "${lineX * width / 2}"
+                        },
+                        {
+                            "type": "Container",
+                            "direction": "${textAreaPosition == 'under' ? 'column' : 'columnReverse'}",
+                            "position": "absolute",
+                            "left": "${labelPositionX}%",
+                            "top": "${labelPositionY}%",
+                            "width": "${labelWidth}%",
+                            "height": "${labelHeight}%",
+                            "data": "${constantLineData.labels}",
+                            "items": [
+                                {
+                                    "type": "Text",
+                                    "text": "${constantLineData.labels[textAreaPosition == 'under' ? index : (numberOfConstantLineLabels - 1) - index].textValue}",
+                                    "style": "avoTextConstantLineLabelStyle",
+                                    "textAlign": "${textLabelsAlignment}",
+                                    "width": "100%"
+                                }
+                            ],
+                            "onMount": [{
+                                "type": "Parallel",
+                                "commands": [
+                                    {
+                                        "type": "AnimateItem",
+                                        "easing": "ease-in-out",
+                                        "duration": 0,
+                                        "value": [
+                                            {
+                                                "property": "opacity",
+                                                "to": 0
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "AnimateItem",
+                                        "easing": "ease-in-out",
+                                        "delay": "${@avoConstantLineAnimationDelay}",
+                                        "duration": "${@avoConstantLineAnimationTime}",
+                                        "value": [
+                                            {
+                                                "property": "opacity",
+                                                "from": 0,
+                                                "to": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }]
+                        }
+                    ]
+                }
+            ]
+        },
+        "avoLineChartLegend": {
+            "parameters": [
+                {
+                    "name": "label",
+                    "type": "string",
+                    "description": "label of the legend"
+                },
+                {
+                    "name": "legendColor",
+                    "description": "the color of legend",
+                    "type": "color"
+                },
+                {
+                    "name": "theme",
+                    "description": "Color pallet (light/dark). Default to dark",
+                    "type": "string",
+                    "default": "dark"
+                }
+            ],
+            "item": [
+                {
+                    "type": "Container",
+                    "direction": "row",
+                    "alignItems": "center",
+                    "items":[
+                        {
+                            "type": "VectorGraphic",
+                            "source": "avoDotGraphic",
+                            "dotColor": "${legendColor}",
+                            "radius": "@avoLegendRadius",
+                            "size": "${(@avoLegendRadius * 2) + 1}"
+                        },
+                        {
+                            "type": "Text",
+                            "left": "@avoLegendRadius",
+                            "text": "${label}",
+                            "fontSize": "15dp",
+                            "style": "${theme == 'light' ? 'avoTextLegendStyleLightTheme' : 'avoTextLegendStyleDarkTheme'}",
+                            "paddingRight": "@avoLegendPadding"
+                        }
+                    ],
+                    "onMount": [{
+                        "type": "Parallel",
+                        "commands": [{
+                                "type": "AnimateItem",
+                                "duration": "${@avoLegendsAnimationTime}",
+                                "value": [
+                                    {
+                                        "property": "opacity",
+                                        "from": 0,
+                                        "to": 1
+                                    }
+                                ]
+                            }]
+                    }]
+                }
+            ]
+        },
+        "avoLineChartLegends": {
+            "parameters": [
+                {
+                    "name": "paths",
+                    "description": "line paths array of line chart",
+                    "type": "array"
+                },
+                {
+                    "name": "theme",
+                    "description": "Color pallet (light/dark). Default to dark",
+                    "type": "string",
+                    "default": "dark"
+                }
+            ],
+            "item": [
+                {
+                    "type": "Sequence",
+                    "data": "${paths}",
+                    "scrollDirection": "horizontal",
+                    "numbered": true,
+                    "items": [
+                        {
+                            "type": "avoLineChartLegend",
+                            "label": "${data.label}",
+                            "legendColor": "${data.pathColor}",
+                            "theme": "${theme}"
+                        }
+                    ]
+                }
+            ]
+        },
+        "avoLineHoverLayout": {
+            "parameters": [
+                {
+                    "name": "pathData",
+                    "description": "line path data",
+                    "type": "object"
+                },
+                {
+                    "name": "top",
+                    "description": "top of the layout",
+                    "type": "number"
+                },
+                {
+                    "name": "left",
+                    "description": "left of the layout",
+                    "type": "number"
+                },
+                {
+                    "name": "width",
+                    "description": "width of the layout",
+                    "type": "number"
+                },
+                {
+                    "name": "height",
+                    "description": "height of the layout",
+                    "type": "number"
+                },
+                {
+                    "name": "useCalloutDataAsHover",
+                    "description": "use callout data as hover data",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "hoverClipX",
+                    "description": "clipping x position in line chart animation",
+                    "type": "number",
+                    "default": 2
+                }
+            ],
+            "item": [
+                {
+                    "type": "Container",
+                    "position": "absolute",
+                    "left": "${left}",
+                    "top": "${top}",
+                    "width": "${width}",
+                    "height": "${height}",
+                    "data": "${useCalloutDataAsHover ? (useLegacyTouch ? pathData.highlight.callouts : pathData.points[pathData.highlight].callouts) : (useLegacyTouch ? pathData.highlight.hover : pathData.points[pathData.highlight].hover)}",
+                    "numbered": true,
+                    "items": [
+                        {
+                            "left": "0",
+                            "top": "0",
+                            "type": "VectorGraphic",
+                            "vectorWidth": "${width}",
+                            "vectorHeight": "${height}",
+                            "position": "absolute",
+                            "source": "avoHoverPathGraphic",
+                            "bind": [
+                                {
+                                    "name": "highlightedPoint_NEW",
+                                    "value": "${touchX == -1 ? pathData.points[pathData.highlight] : pathData.points[pathData.touchGrid[touchIndex]]}"
+                                },
+                                {
+                                    "name": "highlightedPoint_OLD",
+                                    "value": "${touchX == -1 ? pathData.highlight : pathData.touchGrid.cells[touchIndex]}"
+                                },
+                                {
+                                    "name": "highlightedPoint",
+                                    "value": "${useLegacyTouch ? highlightedPoint_OLD : highlightedPoint_NEW}"
+                                },
+                                {
+                                    "name": "hoverTextMaxWidth",
+                                    "value": "${useCalloutDataAsHover ? (pathData.maxCalloutTextWidth ?? @avoDefaultHoverTextMaxWidth) : (pathData.maxHoverTextWidth ?? @avoDefaultHoverTextMaxWidth)}"
+                                },
+                                {
+                                    "name": "numCallouts",
+                                    "value": "${useLegacyTouch ? pathData.highlight.callouts.length : pathData.points[pathData.highlight].callouts.length}"
+                                },
+                                {
+                                    "name": "numHoverStrings",
+                                    "value": "${useLegacyTouch ? pathData.highlight.hover.length : pathData.points[pathData.highlight].hover.length}"
+                                },
+                                {
+                                    "name": "numHovers",
+                                    "value": "${useCalloutDataAsHover ? numCallouts : numHoverStrings}"
+                                }
+                            ],
+                            "hoverData": "${(touchX == -1) ? (useCalloutDataAsHover ? highlightedPoint.callouts[index] : '') : (useCalloutDataAsHover ? highlightedPoint.callouts[index] : highlightedPoint.hover[index])}",
+                            "idx": "${index}",
+                            "highlightX": "${highlightedPoint.x}",
+                            "highlightY": "${highlightedPoint.y}",
+                            "hoverClipX": "${hoverClipX}",
+                            "hoverTextColor": "${useCalloutDataAsHover ? (pathData.pathColor ?? @avoDefaultLineColor) : @avoColorHoverTextDefault}",
+                            "hoverFontSize": "${index == 0 ? @avoHoverPrimaryFontSize : @avoHoverSecondaryFontSize}",
+                            "hoverFontWeight": "${useCalloutDataAsHover ? @avoHoverFontWeight : (index == 0 ? @avoHoverBoldFontWeight : @avoHoverFontWeight)}",
+                            "minY": "${@avoHoverPrimaryFontSize * (index + 1)}",
+                            "maxY": "${height - @avoHoverPrimaryFontSize * @avoHoverVerticalMiddleAlignmentOffset - (numHovers - 1 - index) * @avoHoverPrimaryFontSize}",
+                            "textWidth": "${hoverTextMaxWidth * @avoHoverPrimaryFontSize}"
+                        }
+                    ]
+                }
+            ]
+        },
+        "avoLineChartLayout": {
+            "parameters": [
+                {
+                    "name": "visualObjectData",
+                    "description": "VisualObject data - must be an object with at least a child object titled 'lineChartData'.",
+                    "type": "object"
+                },
+                {
+                    "name": "height",
+                    "description": "Desired height",
+                    "type": "dimension"
+                },
+                {
+                    "name": "width",
+                    "description": "Desired width",
+                    "type": "dimension"
+                },
+                {
+                    "name": "theme",
+                    "description": "Color palette (light/dark). Default to dark",
+                    "type": "string",
+                    "default": "dark"
+                },
+                {
+                    "name": "disableTouchInteraction",
+                    "type": "boolean",
+                    "description": "If true, this VisualObject layout will not respond to touch interactions.",
+                    "default": false
+                }
+            ],
+            "item": [
+                {
+                    "type": "Container",
+                    "id": "LineChartMainContainer",
+                    "direction": "column",
+                    "height": "${height}",
+                    "width": "${width}",
+                    "justifyContent": "center",
+                    "alignSelf": "center",
+                    "bind": [
+                        {
+                            "name": "touchX",
+                            "value": "${-1}"
+                        },
+                        {
+                            "name": "calloutOrLegendSpace",
+                            "value": "${visualObjectData.lineChartData.calloutType == 'title' ? (@viewportProfile == @hubRoundSmall ? 0 : @avoCalloutSpace) : visualObjectData.lineChartData.paths.length > 1 ? @avoLegendHeight : 0}"
+                        },
+                        {
+                            "name": "valueTicksWidth",
+                            "value": "${Math.min(((visualObjectData.lineChartData.maxValueTickWidth ?? visualObjectData.lineChartData.defaultValueTickList.tickMaxWidth) ?? 1) * @avoTickFontSize + @avoTickPadding, width / 2)}"
+                        },
+                        {
+                            "name": "innerContainerLeft",
+                            "value": "${@avoHighlightDotOffset / 2}"
+                        },
+                        {
+                            "name": "innerContainerTop",
+                            "value": "${calloutOrLegendSpace + (@avoHighlightDotOffset / 2)}"
+                        },
+                        {
+                            "name": "innerWidth",
+                            "value": "${width - @avoHighlightDotOffset}"
+                        },
+                        {
+                            "name": "innerHeight",
+                            "value": "${height - calloutOrLegendSpace - @avoHighlightDotOffset}"
+                        },
+                        {
+                            "name": "numberOfValueTicks",
+                            "value": "${Math.max((visualObjectData.lineChartData.defaultValueTicks.length ?? visualObjectData.lineChartData.defaultValueTickList.ticks.length), (visualObjectData.lineChartData.secondaryValueTicks.length ?? 0))}"
+                        },
+                        {
+                            "name": "linePathsWidth",
+                            "value": "${innerWidth - valueTicksWidth}"
+                        },
+                        {
+                            "name": "linePathsHeight",
+                            "value": "${innerHeight - @avoPrimaryTicksHeight - (@avoValueTickHeight / 2)}"
+                        },
+                        {
+                            "name": "highlightCanvasWidth",
+                            "value": "${linePathsWidth + @avoHighlightDotOffset}"
+                        },
+                        {
+                            "name": "highlightCanvasHeight",
+                            "value": "${linePathsHeight + @avoHighlightDotOffset}"
+                        },
+                        {
+                            "name": "linePathsTop",
+                            "value": "${@avoValueTickHeight / 2}"
+                        },
+                        {
+                            "name": "distanceBetweenTickLines",
+                            "value": "${linePathsHeight / ((visualObjectData.lineChartData.defaultValueTicks.length ?? visualObjectData.lineChartData.defaultValueTickList.ticks.length) - 1)}"
+                        },
+                        {
+                            "name": "t",
+                            "value": "${Math.min(elapsedTime / @avoLineAnimationTime, 1)}"
+                        },
+                        {
+                            "name": "animationX",
+                            "value": "${@avoLineAnimationCurve(t) * 2}"
+                        },
+                        {
+                            "name": "useCalloutDataAsHover",
+                            "value": "${(visualObjectData.lineChartData.calloutType == 'title') && (@viewportProfile == @hubRoundSmall)}"
+                        },
+                        {
+                            "name": "mainPath",
+                            "value": "${visualObjectData.lineChartData.paths[0]}"
+                        },
+                        {
+                            "name": "useLegacyTouch",
+                            "value": "${mainPath.touchGrid.stride != null}"    
+                        },
+                        {
+                            "name": "touchGridCells",
+                            "value": "${useLegacyTouch ? mainPath.touchGrid.cells : mainPath.touchGrid}"
+                        },
+                        {
+                            "name": "touchIndex",
+                            "value": "${Math.round(touchX * (touchGridCells.length - 1) / 2)}"
+                        }
+                        
+                    ],
+                    "items": [
+                        {
+                            "type": "Container",
+                            "position": "absolute",
+                            "bottom": "${height - calloutOrLegendSpace}",
+                            "height": "${calloutOrLegendSpace}",
+                            "items": [
+                                {
+                                    "type": "avoLineChartLegends",
+                                    "when": "${visualObjectData.lineChartData.paths.length > 1 && visualObjectData.lineChartData.calloutType != 'title'}",
+                                    "paths": "${visualObjectData.lineChartData.paths}",
+                                    "width": "${width}",
+                                    "theme": "${theme}"
+                                },
+                                {
+                                    "type": "Text",
+                                    "when": "${visualObjectData.lineChartData.calloutType == 'title'}",
+                                    "id": "LineChartCalloutText",
+                                    "bind": [
+                                        {
+                                            "name": "calloutIndex",
+                                            "value": "${touchX == -1 ? mainPath.highlight : mainPath.touchGrid[touchIndex]}"
+                                        },
+                                        {
+                                            "name": "calloutText_OLD",
+                                            "value": "${touchX == -1 ? mainPath.highlight.callouts[0] : mainPath.touchGrid.cells[touchIndex].callouts[0] ?? ''}"
+                                        },
+                                        {
+                                            "name": "calloutTextValue",
+                                            "value": "${useLegacyTouch ? calloutText_OLD : (mainPath.points[calloutIndex].callouts[0] ?? '')}"
+                                        }
+                                    ],
+                                    "text": "${calloutTextValue}",
+                                    "style": "${theme == 'light' ? 'avoTextCalloutStyleLightTheme' : 'avoTextCalloutStyleDarkTheme'}",
+                                    "onMount": [{
+                                        "type": "Parallel",
+                                        "commands": [{
+                                            "type": "AnimateItem",
+                                            "duration": "${@avoLegendsAnimationTime}",
+                                            "value": [
+                                                {
+                                                    "property": "opacity",
+                                                    "from": 0,
+                                                    "to": 1
+                                                }
+                                            ]
+                                        }]
+                                    }]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Container",
+                            "position": "absolute",
+                            "height": "${innerHeight}",
+                            "width": "${innerWidth}",
+                            "left": "${innerContainerLeft}",
+                            "top": "${innerContainerTop}",
+                            "direction": "row",
+                            "items": [
+                                {
+                                    "type": "Container",
+                                    "data": "${visualObjectData.lineChartData.defaultValueTicks ?? visualObjectData.lineChartData.defaultValueTickList.ticks}",
+                                    "height": "${innerHeight}",
+                                    "width": "${innerWidth}",
+                                    "position": "absolute",
+                                    "disabled": true,
+                                    "numbered": true,
+                                    "items": [
+                                        {
+                                            "type": "avoValueTickItemLayout",
+                                            "elementIndex": "${(((visualObjectData.lineChartData.defaultValueTicks.length ?? visualObjectData.lineChartData.defaultValueTickList.ticks.length) - index) - 1)}",
+                                            "totalNumberOfTicks": "${visualObjectData.lineChartData.defaultValueTicks.length ?? visualObjectData.lineChartData.defaultValueTickList.ticks.length}",
+                                            "tickText": "${visualObjectData.lineChartData.defaultValueTicks[elementIndex].component.textValue ?? visualObjectData.lineChartData.defaultValueTickList.ticks[elementIndex].component.textValue}",
+                                            "textWidth": "${valueTicksWidth}",
+                                            "height": "${@avoValueTickHeight}",
+                                            "top": "${index * (distanceBetweenTickLines - @avoValueTickHeight)}",
+                                            "lineWidth": "${linePathsWidth}",
+                                            "theme": "${theme}",
+                                            "startTickIndex": "${visualObjectData.lineChartData.defaultValueTickList.startTickIndex}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Container",
+                                    "data": "${visualObjectData.lineChartData.primaryTicks ?? visualObjectData.lineChartData.primaryTickList.ticks}",
+                                    "height": "${innerHeight}",
+                                    "width": "${innerWidth}",
+                                    "top": "${linePathsTop + linePathsHeight}",
+                                    "left": 0,
+                                    "disabled": true,
+                                    "position": "absolute",
+                                    "numbered": true,
+                                    "items": [
+                                        {
+                                            "type": "avoPrimaryTickItemLayout",
+                                            "when": "${data.space * linePathsWidth + (data.component.width ?? @avoPrimaryTickDefaultWidth) * @avoTickFontSize/2 < linePathsWidth}",
+                                            "position": "absolute",
+                                            "left": "${valueTicksWidth + data.space * linePathsWidth - (data.component.width ?? @avoPrimaryTickDefaultWidth) * @avoTickFontSize/2}",
+                                            "top": 0,
+                                            "width": "${(data.component.width ?? @avoPrimaryTickDefaultWidth) * @avoTickFontSize}",
+                                            "height": "${@avoPrimaryTicksHeight}",
+                                            "elementIndex": "${index}",
+                                            "totalNumberOfTicks": "${visualObjectData.lineChartData.primaryTicks.length ?? visualObjectData.lineChartData.primaryTickList.ticks.length}",
+                                            "tickText": "${data.component.textValue}",
+                                            "theme": "${theme}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Container",
+                            "width": "${width}",
+                            "height": "${height}",
+                            "data": "${visualObjectData.lineChartData.paths}",
+                            "position": "absolute",
+                            "items": [
+                                {
+                                    "type": "avoLinePathLayout",
+                                    "lineCanvasWidth": "${linePathsWidth}",
+                                    "lineCanvasHeight": "${linePathsHeight}",
+                                    "lineCanvasTop": "${linePathsTop + innerContainerTop}",
+                                    "lineCanvasLeft": "${valueTicksWidth + (@avoHighlightDotOffset / 2)}",
+                                    "highlightCanvasWidth": "${highlightCanvasWidth}",
+                                    "highlightCanvasHeight": "${highlightCanvasHeight}",
+                                    "pathData": "${data}",
+                                    "lineX": "${animationX}",
+                                    "theme": "${theme}",
+                                    "hoverOn": "${useCalloutDataAsHover || visualObjectData.lineChartData.calloutType == 'hover'}",
+                                    "useCalloutDataAsHover": "${useCalloutDataAsHover}"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Container",
+                            "position": "absolute",
+                            "height": "${innerHeight}",
+                            "width": "${innerWidth}",
+                            "left": "${innerContainerLeft}",
+                            "top": "${innerContainerTop}",
+                            "direction": "row",
+                            "items": [
+                                {
+                                    "type": "Container",
+                                    "when": "${visualObjectData.lineChartData.horizontalLines != null && visualObjectData.lineChartData.horizontalLines.length > 0}",
+                                    "data": "${visualObjectData.lineChartData.horizontalLines}",
+                                    "opacity": "${touchX == -1 ? 1 : 0}",
+                                    "left": "${valueTicksWidth}",
+                                    "top": "${linePathsTop}",
+                                    "width": "${linePathsWidth}",
+                                    "height": "${linePathsHeight}",
+                                    "position": "absolute",
+                                    "items": [
+                                        {
+                                            "type": "avoConstantLineLayout",
+                                            "width": "${linePathsWidth}",
+                                            "height": "${linePathsHeight}",
+                                            "constantLineData": "${data}",
+                                            "lineX": "${animationX}",
+                                            "theme": "${theme}"        
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "avoLineHoverLayout",
+                                    "when": "${useCalloutDataAsHover || visualObjectData.lineChartData.calloutType == 'hover'}",
+                                    "left": "${valueTicksWidth}",
+                                    "top": "${linePathsTop}",
+                                    "width": "${linePathsWidth}",
+                                    "height": "${linePathsHeight}",
+                                    "pathData": "${mainPath}",
+                                    "hoverClipX": "${animationX}",
+                                    "useCalloutDataAsHover": "${useCalloutDataAsHover}"
+                                },
+                                {
+                                    "type": "VectorGraphic",
+                                    "source": "avoTouchPadGraphic",
+                                    "width": "${linePathsWidth}",
+                                    "height": "${linePathsHeight}",
+                                    "left": "${valueTicksWidth}",
+                                    "top": "${linePathsTop}",
+                                    "position": "absolute",
+                                    "disabled": "${disableTouchInteraction}",
+                                    "vectorWidth": "${linePathsWidth}",
+                                    "vectorHeight": "${linePathsHeight}",
+                                    "onDown": [
+                                        {
+                                            "type": "SetValue",
+                                            "componentId": "LineChartMainContainer",
+                                            "property": "touchX",
+                                            "value": "${Math.clamp(0, event.viewport.x, 2)}"
+                                        }
+                                    ],
+                                    "onMove": [
+                                        {
+                                            "type": "SetValue",
+                                            "componentId": "LineChartMainContainer",
+                                            "property": "touchX",
+                                            "value": "${Math.clamp(0, event.viewport.x, 2)}"
+                                        }
+                                    ],
+                                    "onUp": [
+                                        {
+                                            "type": "SetValue",
+                                            "componentId": "LineChartMainContainer",
+                                            "property": "touchX",
+                                            "value": "${-1}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": [
+            {
+                "type": "Container",
+                "width": "100vw",
+                "height": "100vh",
+                "direction": "column",
+                "items": [
+                    {
+                        "type": "Image",
+                        "source": "${payload.metadata.backgroundImage}",
+                        "scale": "fill",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "position": "absolute"
+                    },
+                    {
+                        "type": "Text",
+                        "text": "${String.toUpperCase(payload.metadata.title)}",
+                        "fontWeight": "700",
+                        "fontSize": 28,
+                        "paddingTop": "32",
+                        "paddingBottom": "16",
+                        "paddingLeft": "6.25vw",
+                        "paddingRight": "6.25vw",
+                        "height": "90dp",
+                        "display": "${@viewportProfile == @hubRoundSmall ? 'invisible' : 'normal'}"
+                    },
+                    {
+                        "type": "avoLineChartLayout",
+                        "width": "${@viewportProfile == @hubRoundSmall ? 70vw : 80vw}",
+                        "height": "${100vh - (90dp * (@viewportProfile == @hubRoundSmall ? 2.0 : 1.5))}",
+                        "visualObjectData": "${payload.visualObjectData}"
+                    }
+                ]
+            }
+        ]
+    }
+}
